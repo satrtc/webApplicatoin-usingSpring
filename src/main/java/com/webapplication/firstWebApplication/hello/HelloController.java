@@ -24,7 +24,7 @@ public class HelloController {
 	@RequestMapping("say-helloweb")
 	public String sayHelloJsp(@RequestParam String name, ModelMap map)
 	{
- logger.info(name);
+ logger.debug("hye log"	);
  map.put("name", name);
 		return "sayhello";
 	}
