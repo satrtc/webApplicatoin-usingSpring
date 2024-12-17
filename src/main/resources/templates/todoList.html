@@ -2,35 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>All todos</title>
+
+ <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+
 </head>
 <body>
-user <span th:text="${name}" />
-<hr>
-<br>
-Your todos
-<br>
-<tbody>
 
-<table border=1px >
-  <tr>
+<div class="container">
+
+<h1>Your todos</h1>
+<tbody>
+<table class="table">
+  <thead>
     <th>id</th>
-    <th>User Name</th>
+    <th>User</th>
     <th>Description</th>
     <th>Date</th>
-    <th>done</th>
-  </tr>
+    <th>Done</th>
+  </thead>
       <tr th:each="todo: ${todos}">
         <td th:text="${todo.id}" />
         <td th:text="${todo.username}"/>
         <td th:text="${todo.description}"/>
         <td th:text="${todo.targeDate}"/>
-        <td th:text="${todo.done}"/>
+        <td th:text="${todo.done}"/>        
     </tr>
-  
 </table>
-
-
 </tbody>
+
+<a href="add-todo" class="btn btn-success">Add Todo</a>
+</div>
+
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>

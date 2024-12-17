@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome</title>
+
+ <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+
 </head>
 <body>
-<div>Welcome</div>
-<br>
-User: <span th:text="${name}" />
-<br>
 
+<div class="container">
+
+<h1>User: <span th:text="${name}" /></h1>
 <a href="todo-list">Your todos</a>
+</div>
+
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
