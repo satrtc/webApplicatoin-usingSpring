@@ -2,10 +2,13 @@ package com.webapplication.firstWebApplication.todo;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
 public class Todo {
 
 	private int id;
 	private String username;
+    @Size(min = 8, message = "Password must be at least 8 characters long")
 	private String description;
 	private LocalDate targeDate;
 	private boolean done;
