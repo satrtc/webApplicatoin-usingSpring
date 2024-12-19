@@ -2,13 +2,18 @@ package com.webapplication.firstWebApplication.todo;
 
 import java.time.LocalDate;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+@Entity
 public class Todo {
 
+	@Id
 	private int id;
 	private String username;
-    @Size(min = 8, message = "Password must be at least 8 characters long")
+//    @Size(min = 8, message = "Password must be at least 8 characters long")
 	private String description;
 	private LocalDate targeDate;
 	private boolean done;
@@ -67,7 +72,9 @@ public class Todo {
 		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targeDate=" + targeDate
 				+ ", done=" + done + "]";
 	}
-	
-	
+
+	public Todo() {
+		super();
+	}
 	
 }

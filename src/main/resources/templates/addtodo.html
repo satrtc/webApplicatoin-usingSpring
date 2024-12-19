@@ -12,15 +12,11 @@
 <div class="container">
 <h1>Add a todo</h1>
 
-<form:form method="post" th:object="${todo}">
-Description: <input type="text" th:field="*{description}", required="required"/>
-<span th:if="${#fields.hasErrors('description')}"
-        th:errors="*{description}"
-        class="error"></span>
-<input type="submit" class="btn btn-success"/>
+<form class="form" method="post" th:object="${todo}">
+Description <input type="text" required="required" th:field="${todo.description}"/>
+<input type="submit" class=" btn btn-suceess"/>
 
-</form:form>
-
+</form>
 
 </div>
 

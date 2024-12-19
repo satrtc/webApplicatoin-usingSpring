@@ -5,21 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TodoService {
 	
 	private static List<Todo> todos=new ArrayList<Todo>();
-	private static int todoCount=0;
-	static {
-		todos.add(new Todo(++todoCount,"rtc", "spring core", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todoCount,"rtc", "spring boot", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todoCount,"rtc", "spring mvc", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todoCount,"rtc", "spring security", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todoCount,"rtc", "spring data", LocalDate.now().plusYears(1), false));
-	}
 	
+	@Autowired
+	private  TodoRepositary todoRepositary;
+	private  int todoCount=0;
+
 	public List<Todo> findByUsername(String username)
 	{
 		return todos;
@@ -27,17 +24,16 @@ public class TodoService {
 	
 	public void addTodo(String username, String description,LocalDate targetDate, boolean todostaus)
 	{
+		
+		if(todoRepositary.count()==0)
+			todoCount=0;
 		Todo todo=new Todo(++todoCount,username,description,targetDate,todostaus);
 		todos.add(todo);
+		todoRepositary.save(todo);
 	}
 
 	public void deleteTodo(int id) {
 		// TODO Auto-generated method stub
-		
-		Predicate<? super Todo> predicate;
-		predicate=todo->todo.getId()==id;
-		todos.removeIf(predicate);
-		
+		todoRepositary.deleteById(id);
 	}
-	
 }

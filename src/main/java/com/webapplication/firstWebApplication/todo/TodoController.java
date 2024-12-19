@@ -21,14 +21,20 @@ public class TodoController {
 	@Autowired
 	private TodoService todoservice;
 	
+	@Autowired
+	private TodoRepositary todoRepositary;
+	
 	@RequestMapping("todo-list")
 	public String listAllTodos(ModelMap map)
 	{
 		List<Todo> allTodos=todoservice.findByUsername("rtc");
-		map.addAttribute("todos", allTodos);
+		List<Todo> h2todo=todoRepositary.findAll();
+		System.out.println(h2todo.size());
+		map.addAttribute("todos", h2todo);
 		return "todoList";
 	}
 	
+	//opens add todo page to enter details
 	@RequestMapping(value = "add-todo", method=RequestMethod.GET)
 	public String addTododetails(ModelMap map)
 	{
@@ -37,21 +43,25 @@ public class TodoController {
 		return "addtodo";
 	}
 	
+	//submits the form and adds a new todo
 	@RequestMapping(value="add-todo", method=RequestMethod.POST)
-	public String addTodo( ModelMap map, @Valid Todo todo, BindingResult bindingResult)
+	public String addTodo( ModelMap map,@Valid Todo todo, BindingResult bindingResult)
 	{
+		System.out.println("submit btn clicked");
 		if(bindingResult.hasErrors())
 		{
 			return "addtodo";
 		}
 		todoservice.addTodo((String)map.get("name"),todo.getDescription(),LocalDate.now().plusYears(1),false);
 		map.addAttribute(todo.getDescription());
-		return "todo-list";
+		return "redirect:todo-list";
 	}
 	
 	@RequestMapping("deletetodo")
 	public String deleteTodo(@RequestParam int id) {
-		todoservice.deleteTodo(id);
+			todoservice.deleteTodo(id);
 		return "redirect:todo-list";
 	}
+
+
 }

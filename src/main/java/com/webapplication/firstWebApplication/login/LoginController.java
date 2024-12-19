@@ -20,15 +20,16 @@ public class LoginController {
 		this.auntheticService = auntheticService;
 	}
 
-	@RequestMapping(value="login", method=RequestMethod.GET )
+	@RequestMapping(value="loginpage", method=RequestMethod.GET )
 	public String saylogin()
 	{
 		return "login";
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@RequestMapping(value="loginpage", method=RequestMethod.POST)
 	public String welcomePage(@RequestParam String name, @RequestParam String password, ModelMap model)
 	{
+		System.out.println(name+"-> "+password);
 		
 		if(auntheticService.authenticateData(name, password))
 		{
