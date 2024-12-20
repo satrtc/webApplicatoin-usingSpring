@@ -36,4 +36,9 @@ public class TodoService {
 		// TODO Auto-generated method stub
 		todoRepositary.deleteById(id);
 	}
+
+	public void updateTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		todoRepositary.save(todo);
+	}
 }

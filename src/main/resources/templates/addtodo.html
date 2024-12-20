@@ -14,7 +14,10 @@
 
 <form class="form" method="post" th:object="${todo}">
 Description <input type="text" required="required" th:field="${todo.description}"/>
-<input type="submit" class=" btn btn-suceess"/>
+Date <input type="text" required="required" th:field="${todo.targeDate}"/>
+Is-done? <input type="text" required="required" th:field="${todo.done}"/>
+
+<input type="submit" class="btn btn-success"/>
 
 </form>
 
